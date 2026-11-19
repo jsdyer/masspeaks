@@ -1,16 +1,36 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "masspeaks",
+  "title": "Mass Peaks",
+  "description": "Find particle peaks by comparing pairs of muons with opposite and matching charges.",
+  "category": "explorers",
+  "tags": [
+    "CERN",
+    "particle physics",
+    "muons"
+  ],
+  "icon": "chart-no-axes-combined",
+  "url": "/masspeaks/",
+  "source": "https://github.com/jsdyer/masspeaks",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "snapshot",
+    "detail": "CERN’s CMS outreach sample supplies the reconstructed mass and charges of two muons in 100,000 collision events.",
+    "cadence": "Monthly",
+    "probes": [
+      {
+        "label": "Data retrieved",
+        "url": "https://coolcode.ca/masspeaks/data/edition.json",
+        "path": [
+          "retrieved"
+        ],
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "collision events"
+        }
+      }
+    ]
   }
 }
