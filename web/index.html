@@ -5,11 +5,12 @@
 <link rel="canonical" href="https://coolcode.ca/masspeaks/">
 </head>
 <body data-tool-id="{{TOOL_ID}}"><a class="skip" href="#main">Skip to content</a><header><a href="https://coolcode.ca/">← CoolCode</a><a href="{{SOURCE_URL}}">Source &amp; guide ↗</a></header>
-<main id="main"><h1>{{TITLE}}</h1><p class="lead">{{DESCRIPTION}}</p><p class="meta" id="meta"></p>
+<main id="main"><h1>{{TITLE}}</h1><p class="lead">Each event in this sample contains a pair of particles called muons. The spike near 3.1 GeV/c² is a clue that some pairs came from a J/ψ particle. Choose a mass interval to compare the counts.</p><p class="meta" id="meta"></p>
 <p id="loading" role="status">Loading the published records…</p><noscript>Enable JavaScript to explore the records. The source guide links the datasets.</noscript>
+<section aria-labelledby="interval-title"><h2 id="interval-title">Compare muon pairs</h2>
+<label>Inspect a mass interval (GeV/c²) <select id="bin"></select></label><p class="finding" id="result" aria-live="polite"></p>
 <div class="controls"><label>Mass range<select id="window"></select></label><label>Bin width<select id="width"></select></label><label>Charge selection<select id="charge"></select></label><label>Vertical scale<select id="scale"></select></label></div>
-<section><h2>Dimuon mass spectrum</h2><p class="legend"><span>Opposite charge</span><span>Same charge</span></p>
-<canvas id="plot" role="img" aria-label="Histogram of two-muon invariant mass. Exact interval counts appear below."></canvas><p id="caption" class="note"></p>
-<label>Inspect a mass interval <select id="bin"></select></label><p class="finding" id="result" aria-live="polite"></p>
+<h3>Muon pairs by mass</h3><p class="legend"><span id="legend-opposite">Opposite charge</span><span id="legend-same">Same charge</span></p>
+<canvas id="plot" role="img" aria-label="Histogram of two-muon invariant mass. Exact counts appear in the interval selector and data table."></canvas><p id="caption" class="note"></p>
 <details><summary>Read the histogram as a table</summary><div class="table" id="rows"></div></details></section>
 <section><h2>Reading the peak</h2><p>Two oppositely charged muons can be decay products of the same particle. The J/ψ appears as an excess around 3.1 GeV/c². Same-charge pairs give a comparison distribution. CERN selected these events for outreach, so their proportions depend on how the sample was assembled.</p><p class="sources"><a href="https://opendata.cern.ch/record/303" id="paper">CMS dataset and licence ↗</a><a href="https://opendata.cern.ch/record/303/files/dimuon.csv" id="raw">Original CSV ↗</a></p></section></main><footer>Part of <a href="https://coolcode.ca/">CoolCode</a> · <a href="./data/edition.json" download>Download this edition (.json)</a> <a href="https://coolcode.ca/report/?tool=masspeaks" referrerpolicy="no-referrer">Report an issue</a></footer></body></html>

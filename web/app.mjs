@@ -10,7 +10,8 @@ start(data=>{
   const plot=el('plot');
   function selected(){
     const r=rows[Number(el('bin').value)]??rows[0];
-    el('result').textContent=binName(r)+' GeV/c² · '+series.map(i=>fmt(r.counts[i],0)+(i?' same-charge':' opposite-charge')).join(' and ')+' pairs';
+    el('result').textContent=series.map(i=>fmt(r.counts[i],0)+(i?' same-charge':' opposite-charge')).join(' and ')+' pairs in this mass interval.';
+    draw();
   }
   function draw(){
     const share=el('scale').value==='share';
@@ -25,6 +26,8 @@ start(data=>{
       const y=bottom-(bottom-top)*f;ctx.fillText(fmt(max*f,share?2:0)+(share?'%':''),2,y+4);
       ctx.strokeStyle='#d7e0da';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();
     }
+    ctx.fillStyle='#e0e8e1';
+    ctx.fillRect(left+Number(el('bin').value)*step,top,step,bottom-top);
     rows.forEach((r,k)=>series.forEach((i,col)=>{
       const bar=(bottom-top)*value(r,i)/max;
       ctx.fillStyle=i?'#b35327':'#005658';
@@ -32,7 +35,7 @@ start(data=>{
     }));
     ctx.fillStyle='#36484b';ctx.fillText((rows[0].lo/100).toFixed(1),left,h-5);
     ctx.textAlign='right';ctx.fillText((rows.at(-1).hi/100).toFixed(1)+' GeV/c²',right,h-5);
-    el('caption').textContent=share?'Each percentage uses all events of the same charge selection in the full sample.':'Vertical axis counts selected pairs in each mass interval.';
+    el('caption').textContent=share?'Each percentage uses all events of the same charge selection in the full sample.':'Taller bars mean more pairs in that mass interval.';
   }
   function update(){
     rows=histogram(data.bins,...ranges[el('window').value],Number(el('width').value));
@@ -40,7 +43,9 @@ start(data=>{
     const best=rows.reduce((i,r,k)=>r.counts[series[0]]>rows[i].counts[series[0]]?k:i,0);
     options('bin',rows.map((r,i)=>[i,binName(r)]),best);
     table('rows',['Mass (GeV/c²)',...series.map(i=>i?'Same charge':'Opposite charge')], rows.map(r=>[binName(r),...series.map(i=>fmt(r.counts[i],0))]));
-    draw();selected();
+    el('legend-opposite').hidden=!series.includes(0);
+    el('legend-same').hidden=!series.includes(1);
+    selected();
   }
   for(const id of ['window','width','charge','scale']) el(id).onchange=update;
   el('bin').onchange=selected;update();new ResizeObserver(draw).observe(plot);
